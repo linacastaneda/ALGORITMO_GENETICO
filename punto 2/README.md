@@ -1,8 +1,5 @@
 # Punto 2 — Población inicial y función de aptitud
 
-**Curso:** Introducción a la Inteligencia Artificial
-**Taller:** Diseño e implementación de un algoritmo genético (Python)
-
 Este README pertenece a la carpeta del **punto 2** del taller. Responde las dudas del
 punto y documenta sus archivos.
 
@@ -38,7 +35,7 @@ Solo requiere Python estándar. El script regenera `resultados_punto2.txt` autom
 
 ### 1. ¿Qué significa λ (lambda)?
 
-λ es un número que elegís vos y que **controla qué tan fuerte se castiga a las soluciones
+λ es un número que se elige y que **controla qué tan fuerte se castiga a las soluciones
 que se pasan del presupuesto**. Es el "precio" que se le cobra por **cada unidad de exceso**
 sobre el presupuesto:
 
@@ -46,6 +43,9 @@ sobre el presupuesto:
 fitness(X) = B(X)                           si C(X) ≤ 50
 fitness(X) = B(X) − λ · (C(X) − 50)         si C(X) > 50
 ```
+
+<img width="550" height="95" alt="image" src="https://github.com/user-attachments/assets/56db6f7a-d2f1-480a-8289-6ac1c810809c" />
+
 
 Ejemplo con los datos reales de la ejecución:
 - Un individuo inválido con beneficio **98** que gasta **51** (exceso = 1).
