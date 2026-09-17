@@ -3,7 +3,7 @@
 **Curso:** Introducción a la Inteligencia Artificial · Taller de Algoritmos Genéticos
 **Problema:** Selección óptima de proyectos (presupuesto máximo = 50)
 **Archivos de esta carpeta:**
-- `punto2_poblacion_aptitud.py` — código fuente comentado.
+- `punto2.py` — código fuente comentado.
 - `resultados_punto2.txt` — salida completa de una ejecución (`random.seed(42)`).
 
 ---

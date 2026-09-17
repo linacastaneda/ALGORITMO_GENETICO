@@ -14,7 +14,7 @@ punto y documenta sus archivos.
 ## Archivos de esta carpeta
 
 ```
-punto 2/
+punto2/
 ├── punto2.py               # Código: población inicial + función de aptitud (λ)
 ├── resultados_punto2.txt   # Salida de una ejecución (seed 42)
 ├── ejercicios_punto2.md    # Desarrollo del punto 2 (ejercicio + análisis de λ)
@@ -24,7 +24,7 @@ punto 2/
 ## Ejecución
 
 ```bash
-python -X utf8 "punto 2/punto2.py"
+python -X utf8 "punto2/punto2.py"
 ```
 
 Solo requiere Python estándar. El script regenera `resultados_punto2.txt` automáticamente.
