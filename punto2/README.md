@@ -15,10 +15,12 @@ punto y documenta sus archivos.
 
 ```
 punto2/
-├── punto2.py               # Código: población inicial + función de aptitud (λ)
-├── resultados_punto2.txt   # Salida de una ejecución (seed 42)
-├── ejercicios_punto2.md    # Desarrollo del punto 2 (ejercicio + análisis de λ)
-└── README.md               # Este archivo (dudas resueltas del punto)
+├── punto2.py                       # Código: población inicial + función de aptitud (λ)
+├── resultados_punto2.txt           # Salida de una ejecución (seed 42)
+├── resultados_punto2_poblacion.csv # Datos: los 20 individuos de la población
+├── resultados_punto2_lambda.csv    # Datos: sensibilidad de la aptitud frente a λ
+├── ejercicios_punto2.md            # Desarrollo del punto 2 (ejercicio + análisis de λ)
+└── README.md                       # Este archivo (dudas resueltas del punto)
 ```
 
 ## Ejecución
@@ -48,13 +50,23 @@ fitness(X) = B(X) − λ · (C(X) − 50)         si C(X) > 50
 
 
 Ejemplo con los datos reales de la ejecución:
-- Un individuo inválido con beneficio **98** que gasta **51** (exceso = 1).
-- La mejor solución válida obtiene **96**.
+- Un individuo inválido con beneficio **98** que gasta **51** (exceso = 1) → cromosoma `1011101010`.
+- La mejor solución válida obtiene **96** (individuo `0111001011`).
 
-| λ | Aptitud del inválido | Resultado |
+Aptitud del inválido según λ (B(X) − λ·(C(X) − 50) = 98 − λ·1):
+
+| λ | Aptitud del inválido | Comparación con la mejor válida (96.00) |
 |---|---|---|
-| 1 | 98 − 1×1 = **97** | Supera a la mejor válida (96) → conviene violar el presupuesto |
-| 5 | 98 − 5×1 = **93** | Queda por debajo de la mejor válida → gastar de más "no conviene" |
+| 0 | 98.00 | igual a su beneficio (sin penalización) |
+| 1 | 97.00 | **supera** → conviene violar el presupuesto |
+| 2 | 96.00 | iguala |
+| 3 | 95.00 | por debajo |
+| **5** | **93.00** | por debajo → gastar de más "no conviene" |
+| 10 | 88.00 | por debajo |
+| 20 | 78.00 | por debajo |
+| 50 | 48.00 | por debajo |
+
+Tabla completa en [`resultados_punto2_lambda.csv`](resultados_punto2_lambda.csv).
 
 ### 2. ¿Qué pasa si λ es demasiado pequeño?
 
@@ -79,6 +91,31 @@ problema λ = 5 (el sugerido por el taller) cumple: deja al inválido de ejemplo
 debajo de 96. Regla general: λ debe ser mayor que el beneficio máximo por unidad de costo
 excedida. Nota: con λ = 2 el inválido iguala a la mejor válida (96 = 96), así que conviene
 `λ > 2`.
+
+## Evidencia de las afirmaciones (con los resultados)
+
+Todas las afirmaciones anteriores se respaldan con la ejecución de `punto2.py`
+(seed 42), disponible en texto en `resultados_punto2.txt` y en tablas en los CSV
+de esta carpeta (GitHub los visualiza como tablas).
+
+### Afirmación → resultado que la valida
+
+| # | Afirmación del README | Resultado que la valida | Fuente |
+|---|---|---|---|
+| 1 | Cada unidad de λ se descuenta del beneficio por unidad de exceso | Inválido (B=98, exceso=1): λ=0→98.00, λ=1→97.00, λ=5→93.00, λ=50→48.00 | `resultados_punto2_lambda.csv` |
+| 2 | λ pequeño → el inválido supera a la mejor válida | λ=1: **97.00 > 96.00** | `resultados_punto2_lambda.csv` |
+| 3 | λ grande → el inválido cae bruscamente | λ=50: **48.00**, muy por debajo de 96.00 | `resultados_punto2_lambda.csv` |
+| 4 | λ=5 deja al inválido por debajo de la mejor válida | λ=5: **93.00 < 96.00** | `resultados_punto2_lambda.csv` |
+| 5 | Regla λ > 2 (con λ=2 el inválido iguala a la mejor válida) | λ=2: **96.00 = 96.00**; λ=3: **95.00 < 96.00** | `resultados_punto2_lambda.csv` |
+| 6 | La misma fórmula se aplicó en la tabla de la población | Individuo #4 `1011101010`: B=98, C=51 → aptitud = 98 − 5·1 = **93.00** ✓ | `resultados_punto2_poblacion.csv` |
+| 7 | 13 de 20 soluciones son válidas | **13/20 (65.0 %)** | `resultados_punto2.txt` |
+| 8 | La mejor válida gana 96 | Individuo #8 `0111001011` (P2, P3, P4, P7, P9, P10; costo 50, beneficio 96 → aptitud 96.00) | `resultados_punto2_poblacion.csv` |
+| 9 | Aptitud promedio de la población = 65.95 | **65.95** (suma 1319.00 / 20) | `resultados_punto2.txt` |
+
+### Datos completos
+
+- [`resultados_punto2_poblacion.csv`](resultados_punto2_poblacion.csv): los 20 individuos con cromosoma, proyectos seleccionados, costo, beneficio, aptitud y validez.
+- [`resultados_punto2_lambda.csv`](resultados_punto2_lambda.csv): sensibilidad de la aptitud del inválido de ejemplo para distintos valores de λ.
 
 ## Convenciones del proyecto
 
