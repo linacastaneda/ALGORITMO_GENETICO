@@ -239,7 +239,7 @@ def mostrar_individuo(nombre, cromosoma):
     print(f"  Costo     : {costo}")
     print(f"  Beneficio : {beneficio}")
     print(f"  Aptitud   : {aptitud:.2f}")
-    print(f"  Válida    : {'SI' if es_valida(cromosoma) else 'NO'}")
+    print(f"  Valida    : {'SI' if es_valida(cromosoma) else 'NO'}")
 
 
 # ============================================================
@@ -249,7 +249,7 @@ def mostrar_individuo(nombre, cromosoma):
 def demostracion_punto3():
 
     print("=" * 70)
-    print("PUNTO 3 - OPERADORES GENÉTICOS")
+    print("PUNTO 3 - OPERADORES GENETICOS")
     print("=" * 70)
 
     # --------------------------------------------------------
@@ -258,7 +258,7 @@ def demostracion_punto3():
 
     poblacion = generar_poblacion(20)
 
-    print("\nPOBLACIÓN INICIAL")
+    print("\nPOBLACION INICIAL")
     print("-" * 70)
     print(f"Cantidad de individuos: {len(poblacion)}")
 
@@ -267,7 +267,7 @@ def demostracion_punto3():
     # --------------------------------------------------------
 
     print("\n" + "=" * 70)
-    print("1. SELECCIÓN POR TORNEO")
+    print("1. SELECCION POR TORNEO")
     print("=" * 70)
 
     padre1, torneo1 = seleccionar_padre(
@@ -345,7 +345,7 @@ def demostracion_punto3():
         f"{cromosoma_texto(padre2)}"
     )
 
-    print("\nHijos antes de la mutación:")
+    print("\nHijos antes de la mutacion:")
 
     print(
         f"  HIJO 1: "
@@ -362,7 +362,7 @@ def demostracion_punto3():
     # --------------------------------------------------------
 
     print("\n" + "=" * 70)
-    print("3. MUTACIÓN")
+    print("3. MUTACION")
     print("=" * 70)
 
     hijo1_mutado, posiciones1 = mutar(
@@ -375,7 +375,7 @@ def demostracion_punto3():
         PROB_MUTACION
     )
 
-    print(f"\nProbabilidad de mutación: {PROB_MUTACION}")
+    print(f"\nProbabilidad de mutacion: {PROB_MUTACION}")
 
     print("\nHIJO 1:")
 
@@ -392,7 +392,7 @@ def demostracion_punto3():
         print("  No hubo mutaciones.")
 
     print(
-        f"  Después: "
+        f"  Despues: "
         f"{cromosoma_texto(hijo1_mutado)}"
     )
 
@@ -411,7 +411,7 @@ def demostracion_punto3():
         print("  No hubo mutaciones.")
 
     print(
-        f"  Después: "
+        f"  Despues: "
         f"{cromosoma_texto(hijo2_mutado)}"
     )
 
