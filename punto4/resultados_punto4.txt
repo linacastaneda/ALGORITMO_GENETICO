@@ -120,3 +120,5 @@ MEJOR SOLUCION ENCONTRADA:
   Solucion valida         : SI
 
 Aptitud promedio de la ultima generacion: 90.85
+Diversidad de la ultima generacion (individuos distintos): 5 de 20
+Diversidad promedio por generacion: 8.42

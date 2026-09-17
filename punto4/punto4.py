@@ -131,6 +131,7 @@ def ejecutar_algoritmo_genetico(config=None):
         mejor_global: cromosoma con la mejor aptitud de todo el proceso.
         mejor_global_apt: valor de aptitud de la mejor solucion.
         gen_mejor: generacion en la que aparecio la mejor solucion.
+        diversidad: numero de cromosomas distintos por generacion.
     """
     parametros = dict(CONFIG if config is None else config)
     n = parametros["tamano_poblacion"]
@@ -143,6 +144,7 @@ def ejecutar_algoritmo_genetico(config=None):
 
     poblacion = generar_poblacion(n)
     historial = []
+    diversidad = []  # individuos distintos por generacion (diversidad)
 
     mejor_global = None
     mejor_global_apt = -float("inf")
@@ -162,6 +164,7 @@ def ejecutar_algoritmo_genetico(config=None):
         # Registrar la generacion
         historial.append((gen, apt_actual, benef_actual, costo_actual,
                           list(mejor_actual), promedio))
+        diversidad.append(len({tuple(c) for c in poblacion}))
 
         # Actualizar el mejor global si corresponde
         if apt_actual > mejor_global_apt:
@@ -186,7 +189,7 @@ def ejecutar_algoritmo_genetico(config=None):
 
         poblacion = elite + nueva_poblacion
 
-    return historial, mejor_global, mejor_global_apt, gen_mejor
+    return historial, mejor_global, mejor_global_apt, gen_mejor, diversidad
 
 
 # ---------------------------------------------------------------------------
@@ -195,7 +198,7 @@ def ejecutar_algoritmo_genetico(config=None):
 def construir_reporte(config=None):
     """Ejecuta el AG y construye el reporte completo del punto 4."""
     parametros = dict(CONFIG if config is None else config)
-    historial, mejor, mejor_apt, gen_mejor = ejecutar_algoritmo_genetico(parametros)
+    historial, mejor, mejor_apt, gen_mejor, diversidad = ejecutar_algoritmo_genetico(parametros)
 
     lineas = []
     lineas.append("=" * 82)
@@ -235,6 +238,10 @@ def construir_reporte(config=None):
     lineas.append("  Solucion valida         : %s" % ("SI" if mejor_valida else "NO"))
     lineas.append("")
     lineas.append("Aptitud promedio de la ultima generacion: %.2f" % historial[-1][5])
+    lineas.append("Diversidad de la ultima generacion (individuos distintos): %d de %d"
+                  % (diversidad[-1], parametros["tamano_poblacion"]))
+    lineas.append("Diversidad promedio por generacion: %.2f"
+                  % (sum(diversidad) / len(diversidad)))
     return "\n".join(lineas), mejor
 
 
