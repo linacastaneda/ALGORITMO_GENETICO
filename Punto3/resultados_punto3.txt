@@ -1,13 +1,13 @@
 ﻿======================================================================
-PUNTO 3 - OPERADORES GEN├ëTICOS
+PUNTO 3 - OPERADORES GENETICOS
 ======================================================================
 
-POBLACI├ôN INICIAL
+POBLACION INICIAL
 ----------------------------------------------------------------------
 Cantidad de individuos: 20
 
 ======================================================================
-1. SELECCI├ôN POR TORNEO
+1. SELECCION POR TORNEO
 ======================================================================
 
 Torneo para seleccionar PADRE 1:
@@ -22,7 +22,7 @@ PADRE 1:
   Costo     : 52
   Beneficio : 100
   Aptitud   : 90.00
-  V├ílida    : NO
+  Valida    : NO
 
 Torneo para seleccionar PADRE 2:
   Candidato 1: 0011100100 | Aptitud = 73.00
@@ -36,7 +36,7 @@ PADRE 2:
   Costo     : 50
   Beneficio : 96
   Aptitud   : 96.00
-  V├ílida    : SI
+  Valida    : SI
 
 ======================================================================
 2. CRUCE DE UN PUNTO
@@ -53,20 +53,20 @@ Hijos antes de la mutaci├│n:
   HIJO 2: 0111001111
 
 ======================================================================
-3. MUTACI├ôN
+3. MUTACION
 ======================================================================
 
-Probabilidad de mutaci├│n: 0.05
+Probabilidad de mutacion: 0.05
 
 HIJO 1:
   Antes  : 0110001011
   No hubo mutaciones.
-  Despu├®s: 0110001011
+  Despues: 0110001011
 
 HIJO 2:
   Antes  : 0111001111
   No hubo mutaciones.
-  Despu├®s: 0111001111
+  Despues: 0111001111
 
 ======================================================================
 4. RESULTADO FINAL DE LOS HIJOS
@@ -78,7 +78,7 @@ HIJO 1 FINAL:
   Costo     : 42
   Beneficio : 81
   Aptitud   : 81.00
-  V├ílida    : SI
+  Valida    : SI
 
 HIJO 2 FINAL:
   Cromosoma : 0111001111
@@ -86,7 +86,7 @@ HIJO 2 FINAL:
   Costo     : 60
   Beneficio : 115
   Aptitud   : 65.00
-  V├ílida    : NO
+  Valida    : NO
 
 ======================================================================
 FIN DEL PUNTO 3
