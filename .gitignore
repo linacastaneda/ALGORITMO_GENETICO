@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Entornos / IDE
+.idea/
+.vscode/
+.DS_Store
+
+# Secretos (nunca subir)
+.env
+.env.*
+*.key
+*.pem
+
+# Artefactos de ejecución (resultados regenerables)
+*.log
