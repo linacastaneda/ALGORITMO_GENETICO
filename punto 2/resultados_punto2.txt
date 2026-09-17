@@ -1,0 +1,78 @@
+==============================================================================
+PUNTO 2 - POBLACION INICIAL Y FUNCION DE APTITUD
+Problema: seleccion optima de proyectos | Presupuesto = 50
+Parametros: N = 20, lambda = 5
+==============================================================================
+#   | Cromosoma (x1..x10) | Proyectos          |  Costo | Beneficio |  Aptitud | Valida
+------------------------------------------------------------------------------
+1   | 0010000010        | P3, P9             |     16 |       32 |    32.00 | SI
+2   | 0000001011        | P7, P9, P10        |     24 |       45 |    45.00 | SI
+3   | 0011100100        | P3, P4, P5, P8     |     38 |       73 |    73.00 | SI
+4   | 1011101010        | P1, P3, P4, P5, P7 |     51 |       98 |    93.00 | NO
+5   | 1100001000        | P1, P2, P7         |     25 |       48 |    48.00 | SI
+6   | 1111011010        | P1, P2, P3, P4, P6 |     63 |      123 |    58.00 | NO
+7   | 0001110100        | P4, P5, P6, P8     |     41 |       78 |    78.00 | SI
+8   | 0111001011        | P2, P3, P4, P7, P9 |     50 |       96 |    96.00 | SI
+9   | 1010011110        | P1, P3, P6, P7, P8 |     58 |      114 |    74.00 | NO
+10  | 0100000101        | P2, P8, P10        |     30 |       57 |    57.00 | SI
+11  | 1110011011        | P1, P2, P3, P6, P7 |     68 |      133 |    43.00 | NO
+12  | 0101001001        | P2, P4, P7, P10    |     34 |       64 |    64.00 | SI
+13  | 0011001100        | P3, P4, P7, P8     |     35 |       68 |    68.00 | SI
+14  | 0001000101        | P4, P8, P10        |     31 |       59 |    59.00 | SI
+15  | 1001111100        | P1, P4, P5, P6, P7 |     59 |      113 |    68.00 | NO
+16  | 0010000000        | P3                 |     11 |       23 |    23.00 | SI
+17  | 0010011001        | P3, P6, P7, P10    |     44 |       87 |    87.00 | SI
+18  | 0110001111        | P2, P3, P7, P8, P9 |     52 |      100 |    90.00 | NO
+19  | 1000110000        | P1, P5, P6         |     35 |       68 |    68.00 | SI
+20  | 1010110010        | P1, P3, P5, P6, P9 |     51 |      100 |    95.00 | NO
+------------------------------------------------------------------------------
+Resumen:
+  Poblacion: 20 individuos
+  Soluciones validas: 13 de 20 (65.0%)
+  Aptitud promedio de la poblacion: 65.95
+  Suma de aptitudes: 1319.00
+  Mejor solucion valida encontrada:
+    Cromosoma : 0111001011
+    Proyectos : P2, P3, P4, P7, P9, P10
+    Costo     : 50
+    Beneficio : 96
+    Aptitud   : 96.00
+
+==============================================================================
+ANALISIS: EFECTO DEL PARAMETRO DE PENALIZACION LAMBDA
+==============================================================================
+Individuo invalido de ejemplo:
+  Cromosoma : 1011101010
+  Proyectos : P1, P3, P4, P5, P7, P9
+  Costo     : 51 (exceso de 1 sobre el presupuesto)
+  Beneficio : 98
+  Mejor aptitud entre soluciones VALIDAS: 96.00
+
+  lambda | aptitud del invalido | observacion
+  -------|----------------------|---------------------------------------
+       0 |                98.00 | igual que su beneficio (sin penalizacion)
+       1 |                97.00 | supera la mejor aptitud valida
+       2 |                96.00 | igual a la mejor aptitud valida
+       3 |                95.00 | queda por debajo de la mejor aptitud valida
+       5 |                93.00 | queda por debajo de la mejor aptitud valida
+      10 |                88.00 | queda por debajo de la mejor aptitud valida
+      20 |                78.00 | queda por debajo de la mejor aptitud valida
+      50 |                48.00 | queda por debajo de la mejor aptitud valida
+
+Con lambda = 5, la aptitud del invalido es 93.00; la mejor valida es 96.00.
+
+Explicacion:
+  - lambda PEQUENO (p. ej. 0, 1): la penalizacion es debil. Una solucion
+    que excede el presupuesto puede mostrar una aptitud mayor que la de
+    la mejor solucion valida, por lo que el algoritmo genetico tendera
+    a favorecer soluciones invalidas y podria converger a una solucion
+    que no respeta la restriccion.
+  - lambda GRANDE (p. ej. 20, 50): la penalizacion es fuerte. Las soluciones
+    invalidas caen bruscamente en aptitud y casi nunca son seleccionadas.
+    Se favorece el cumplimiento de la restriccion, aunque una penalizacion
+    extrema reduce la exploracion de regiones cercanas al limite del
+    presupuesto y puede perjudicar la diversidad de la poblacion.
+  - Valor adecuado: el suficiente para que ninguna solucion invalida supere
+    a la mejor valida. En este problema, con lambda = 5 el invalido de
+    ejemplo (98 de beneficio, 1 de exceso) obtiene aptitud 93.00,
+    mientras que la mejor valida alcanza 96.00.
