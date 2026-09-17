@@ -1,4 +1,3 @@
-
 # Punto 3 - Operadores Genéticos
 
 ## Introducción
@@ -9,10 +8,10 @@ El problema consiste en seleccionar proyectos de innovación buscando **maximiza
 
 Cada proyecto se representa mediante un cromosoma binario de 10 posiciones:
 
-* `1` → el proyecto es seleccionado.
-* `0` → el proyecto no es seleccionado.
+- `1` → el proyecto es seleccionado.
+- `0` → el proyecto no es seleccionado.
 
-Este punto toma como base la representación y la función de aptitud desarrolladas en el **Punto 2** y agrega los operadores necesarios para generar nuevos individuos.
+Este punto toma como base la representación de los individuos y la función de aptitud desarrolladas en el **Punto 2**, y agrega los operadores necesarios para generar nuevos individuos.
 
 ---
 
@@ -30,44 +29,70 @@ Además, el programa permite observar paso a paso cómo estos operadores trabaja
 
 # Problema
 
-Se tienen 10 proyectos de innovación:
+Se tienen 10 proyectos de innovación. Cada proyecto tiene asociado un costo y un beneficio.
+
+El objetivo general es seleccionar proyectos buscando maximizar el beneficio sin superar un presupuesto máximo de 50 unidades.
+
+### Datos de los proyectos
 
 | Proyecto | Costo | Beneficio |
 | :------: | ----: | --------: |
-|    P1    |    12 |        24 |
-|    P2    |     7 |        13 |
-|    P3    |    11 |        23 |
-|    P4    |     8 |        15 |
-|    P5    |     9 |        16 |
-|    P6    |    14 |        28 |
-|    P7    |     6 |        11 |
-|    P8    |    10 |        19 |
-|    P9    |     5 |         9 |
-|    P10   |    13 |        25 |
+| P1 | 12 | 24 |
+| P2 | 7 | 13 |
+| P3 | 11 | 23 |
+| P4 | 8 | 15 |
+| P5 | 9 | 16 |
+| P6 | 14 | 28 |
+| P7 | 6 | 11 |
+| P8 | 10 | 19 |
+| P9 | 5 | 9 |
+| P10 | 13 | 25 |
 
-El presupuesto máximo disponible es:
+### Presupuesto máximo
 
-**50**
+```text
+50
+```
 
-La función de aptitud utilizada corresponde a la definida en el Punto 2, utilizando:
+---
+
+# Función de aptitud
+
+La función de aptitud utilizada corresponde a la definida en el Punto 2.
+
+Para las soluciones cuyo costo no supera el presupuesto:
+
+```text
+Aptitud = Beneficio
+```
+
+Cuando el costo supera el presupuesto, se aplica una penalización.
+
+El valor utilizado es:
 
 ```text
 lambda = 5
 ```
 
-Cuando una solución no supera el presupuesto, su aptitud corresponde a su beneficio.
-
-Cuando supera el presupuesto, se aplica una penalización de acuerdo con el exceso:
+La función completa es:
 
 ```text
-Aptitud = Beneficio - lambda × Exceso
+Si costo <= 50:
+
+    Aptitud = Beneficio
+
+Si costo > 50:
+
+    Aptitud = Beneficio - lambda × (costo - 50)
 ```
+
+De esta manera, las soluciones que superan el presupuesto reciben una penalización proporcional al exceso.
 
 ---
 
 # Representación del individuo
 
-Cada individuo está representado mediante un cromosoma binario de 10 genes.
+Cada individuo se representa mediante un cromosoma binario de 10 genes.
 
 Por ejemplo:
 
@@ -82,10 +107,28 @@ P1  P2  P3  P4  P5  P6  P7  P8  P9  P10
  0   1   1   1   0   0   1   0   1    1
 ```
 
-Por lo tanto, los proyectos seleccionados serían:
+Por lo tanto, los proyectos seleccionados son:
 
 ```text
 P2, P3, P4, P7, P9, P10
+```
+
+El costo correspondiente es:
+
+```text
+7 + 11 + 8 + 6 + 5 + 13 = 50
+```
+
+Y el beneficio:
+
+```text
+13 + 23 + 15 + 11 + 9 + 25 = 96
+```
+
+Como el costo es exactamente igual al presupuesto, el individuo es válido y su aptitud es:
+
+```text
+Aptitud = 96
 ```
 
 ---
@@ -94,7 +137,7 @@ P2, P3, P4, P7, P9, P10
 
 ## ¿Qué es?
 
-La selección por torneo permite elegir los padres que participarán en el proceso de reproducción.
+La selección por torneo permite escoger los individuos que participarán como padres en el proceso de reproducción.
 
 En este ejercicio se utiliza un **torneo de tamaño 3**.
 
@@ -102,27 +145,9 @@ El procedimiento es:
 
 1. Se seleccionan aleatoriamente tres individuos de la población.
 2. Se obtiene la aptitud de cada individuo.
-3. Se comparan sus aptitudes.
+3. Se comparan las aptitudes.
 4. El individuo con mayor aptitud gana el torneo.
 5. El ganador es seleccionado como padre.
-
-### Ejemplo
-
-Supongamos que se obtiene el siguiente torneo:
-
-```text
-Candidato 1 → Aptitud = 73
-Candidato 2 → Aptitud = 96
-Candidato 3 → Aptitud = 68
-```
-
-El ganador sería:
-
-```text
-Candidato 2
-```
-
-porque presenta la mayor aptitud.
 
 La función implementada es:
 
@@ -130,31 +155,47 @@ La función implementada es:
 def seleccionar_padre(poblacion, tam_torneo=3):
 ```
 
+### Ejemplo
+
+Si los participantes de un torneo presentan:
+
+| Candidato | Aptitud |
+| :--------: | ------: |
+| 1 | 73 |
+| 2 | 96 |
+| 3 | 68 |
+
+El candidato 2 gana el torneo porque tiene la mayor aptitud.
+
+Para generar los dos padres necesarios para el cruce, el proceso de selección se realiza dos veces.
+
 ---
 
 # 2. Cruce de un punto
 
 ## ¿Qué es?
 
-El cruce combina la información genética de dos padres para generar nuevos individuos.
+El cruce permite combinar la información genética de dos padres para generar nuevos individuos.
 
-Primero se selecciona aleatoriamente un punto de corte dentro del cromosoma.
+Primero se selecciona aleatoriamente un punto de cruce dentro del cromosoma.
+
+Después, se intercambian las partes posteriores de los dos padres.
 
 Por ejemplo:
 
 ```text
-Padre 1: 1011 | 101010
-Padre 2: 0111 | 001011
+Padre 1 = 1011 | 101010
+Padre 2 = 0111 | 001011
 ```
 
-Se intercambian las partes que se encuentran después del punto de corte:
+Después del cruce:
 
 ```text
-Hijo 1: 1011 | 001011
-Hijo 2: 0111 | 101010
+Hijo 1 = 1011 | 001011
+Hijo 2 = 0111 | 101010
 ```
 
-De esta manera, cada hijo contiene información genética de ambos padres.
+De esta forma, cada hijo contiene información genética proveniente de ambos padres.
 
 La función implementada es:
 
@@ -170,9 +211,9 @@ El punto de cruce se selecciona aleatoriamente entre las posiciones válidas del
 
 ## ¿Qué es?
 
-La mutación introduce pequeños cambios aleatorios en los cromosomas.
+La mutación introduce cambios aleatorios en los cromosomas.
 
-En este ejercicio se utiliza una probabilidad de mutación de:
+Para este ejercicio se utiliza una probabilidad de mutación de:
 
 ```text
 pm = 0.05
@@ -180,7 +221,7 @@ pm = 0.05
 
 Esto corresponde a una probabilidad del **5 % para cada gen**.
 
-Cuando un gen muta, cambia su valor:
+Cuando un gen es seleccionado para mutar, su valor cambia:
 
 ```text
 0 → 1
@@ -206,12 +247,12 @@ En este ejemplo, uno de los genes cambió de `1` a `0`.
 La función implementada es:
 
 ```python
-def mutar(cromosoma, pm=PROB_MUTACION):
+def mutar(cromosoma, pm=0.05):
 ```
 
-La mutación se realiza de forma independiente para cada gen.
+La mutación se realiza de manera independiente para cada gen.
 
-Por esta razón, una ejecución puede presentar una o varias mutaciones, pero también es posible que no ocurra ninguna.
+Por esta razón, una ejecución puede presentar una o varias mutaciones, pero también puede ocurrir que no se produzca ninguna.
 
 ---
 
@@ -250,88 +291,291 @@ El proceso implementado en este punto puede representarse de la siguiente manera
 
 ---
 
+# Demostración del Punto 3
+
+El programa realiza una demostración completa de los operadores solicitados utilizando una población inicial de 20 individuos.
+
+El proceso realizado es:
+
+1. Generar la población inicial.
+2. Realizar un torneo de 3 individuos para seleccionar el Padre 1.
+3. Realizar un segundo torneo de 3 individuos para seleccionar el Padre 2.
+4. Realizar el cruce de un punto.
+5. Mostrar los hijos antes de la mutación.
+6. Aplicar la mutación binaria con `pm = 0.05`.
+7. Mostrar los hijos después de la mutación.
+8. Calcular el costo, beneficio y aptitud de los hijos finales.
+9. Comprobar si los hijos respetan el presupuesto.
+
+---
+
+# Ejemplo manual solicitado
+
+La ejecución utilizada para demostrar el Punto 3 produjo los siguientes resultados.
+
+## Selección del Padre 1
+
+Primer torneo:
+
+| Candidato | Cromosoma | Aptitud |
+| :--------: | :-------- | ------: |
+| 1 | 0000001011 | 45.00 |
+| 2 | 0110001111 | 90.00 |
+| 3 | 0010000010 | 32.00 |
+
+El ganador fue:
+
+```text
+PADRE 1 = 0110001111
+```
+
+Información del Padre 1:
+
+| Característica | Resultado |
+|----------------|-----------|
+| Cromosoma | 0110001111 |
+| Proyectos | P2, P3, P7, P8, P9, P10 |
+| Costo | 52 |
+| Beneficio | 100 |
+| Aptitud | 90.00 |
+| Válida | No |
+
+Como el costo es 52, supera el presupuesto en 2 unidades.
+
+La aptitud se calcula:
+
+```text
+100 - 5 × (52 - 50)
+
+100 - 10 = 90
+```
+
+---
+
+# Selección del Padre 2
+
+Segundo torneo:
+
+| Candidato | Cromosoma | Aptitud |
+| :--------: | :-------- | ------: |
+| 1 | 0011100100 | 73.00 |
+| 2 | 0111001011 | 96.00 |
+| 3 | 1111011010 | 58.00 |
+
+El ganador fue:
+
+```text
+PADRE 2 = 0111001011
+```
+
+Información del Padre 2:
+
+| Característica | Resultado |
+|----------------|-----------|
+| Cromosoma | 0111001011 |
+| Proyectos | P2, P3, P4, P7, P9, P10 |
+| Costo | 50 |
+| Beneficio | 96 |
+| Aptitud | 96.00 |
+| Válida | Sí |
+
+---
+
+# Cruce de un punto
+
+Los padres seleccionados fueron:
+
+```text
+PADRE 1 = 0110001111
+PADRE 2 = 0111001011
+```
+
+El punto de cruce seleccionado por el programa fue:
+
+```text
+7
+```
+
+Los cromosomas se pueden representar como:
+
+```text
+PADRE 1 = 0110001 | 111
+PADRE 2 = 0111001 | 011
+```
+
+Después de intercambiar las partes posteriores:
+
+```text
+HIJO 1 = 0110001 | 011
+HIJO 2 = 0111001 | 111
+```
+
+Por lo tanto, los hijos antes de la mutación fueron:
+
+```text
+HIJO 1 = 0110001011
+HIJO 2 = 0111001111
+```
+
+---
+
+# Mutación
+
+La probabilidad de mutación utilizada fue:
+
+```text
+pm = 0.05
+```
+
+Durante esta ejecución no se produjo ninguna mutación.
+
+Por lo tanto:
+
+| Hijo | Antes | Mutaciones | Después |
+|------|-------|------------|---------|
+| Hijo 1 | 0110001011 | Ninguna | 0110001011 |
+| Hijo 2 | 0111001111 | Ninguna | 0111001111 |
+
+El hecho de que no haya ocurrido una mutación en esta ejecución es posible debido al carácter aleatorio del proceso.
+
+La función de mutación sí se ejecutó y revisó cada uno de los genes utilizando la probabilidad establecida del 5 %.
+
+---
+
+# Resultados finales
+
+Los hijos obtenidos después del cruce y la mutación fueron:
+
+| Hijo | Cromosoma | Proyectos | Costo | Beneficio | Aptitud | Válida |
+|------|-----------|-----------|------:|----------:|--------:|:------:|
+| Hijo 1 | 0110001011 | P2, P3, P7, P9, P10 | 42 | 81 | 81.00 | Sí |
+| Hijo 2 | 0111001111 | P2, P3, P4, P7, P8, P9, P10 | 60 | 115 | 65.00 | No |
+
+## Hijo 1
+
+Cromosoma:
+
+```text
+0110001011
+```
+
+Proyectos seleccionados:
+
+```text
+P2, P3, P7, P9, P10
+```
+
+Costo:
+
+```text
+7 + 11 + 6 + 5 + 13 = 42
+```
+
+Beneficio:
+
+```text
+13 + 23 + 11 + 9 + 25 = 81
+```
+
+Como el costo no supera el presupuesto:
+
+```text
+Aptitud = 81
+```
+
+---
+
+## Hijo 2
+
+Cromosoma:
+
+```text
+0111001111
+```
+
+Proyectos seleccionados:
+
+```text
+P2, P3, P4, P7, P8, P9, P10
+```
+
+Costo:
+
+```text
+7 + 11 + 8 + 6 + 10 + 5 + 13 = 60
+```
+
+Beneficio:
+
+```text
+13 + 23 + 15 + 11 + 19 + 9 + 25 = 115
+```
+
+Como el costo supera el presupuesto:
+
+```text
+Aptitud = 115 - 5 × (60 - 50)
+
+Aptitud = 115 - 50
+
+Aptitud = 65
+```
+
+Por lo tanto, aunque el beneficio del hijo es 115, su aptitud queda en 65 debido a la penalización por superar el presupuesto.
+
+---
+
+# Tabla resumen del proceso
+
+La demostración completa puede resumirse de la siguiente manera:
+
+| Etapa | Resultado |
+|-------|-----------|
+| Padre 1 | 0110001111 |
+| Padre 2 | 0111001011 |
+| Punto de cruce | 7 |
+| Hijo 1 antes de mutación | 0110001011 |
+| Hijo 2 antes de mutación | 0111001111 |
+| Mutación Hijo 1 | Ninguna |
+| Mutación Hijo 2 | Ninguna |
+| Hijo 1 final | 0110001011 |
+| Hijo 2 final | 0111001111 |
+
+---
+
 # Funciones implementadas
 
-El archivo `punto3_operadores_geneticos.py` contiene las funciones necesarias para realizar el proceso.
+El archivo `punto3_operadores_geneticos.py` contiene las funciones utilizadas para realizar el proceso.
 
-| Función                     | Descripción                                       |
-| --------------------------- | ------------------------------------------------- |
-| `generar_individuo()`       | Genera un cromosoma binario.                      |
-| `generar_poblacion()`       | Genera la población inicial.                      |
-| `calcular_costo()`          | Calcula el costo de un individuo.                 |
-| `calcular_beneficio()`      | Calcula el beneficio de un individuo.             |
-| `calcular_aptitud()`        | Calcula la aptitud utilizando la penalización.    |
-| `es_valida()`               | Comprueba si el individuo respeta el presupuesto. |
-| `proyectos_seleccionados()` | Identifica los proyectos seleccionados.           |
-| `seleccionar_padre()`       | Realiza la selección mediante torneo.             |
-| `cruzar()`                  | Realiza el cruce de un punto.                     |
-| `mutar()`                   | Realiza la mutación binaria.                      |
+| Función | Descripción |
+|---------|-------------|
+| `generar_individuo()` | Genera un cromosoma binario de 10 genes. |
+| `generar_poblacion()` | Genera la población inicial. |
+| `calcular_costo()` | Calcula el costo total de un individuo. |
+| `calcular_beneficio()` | Calcula el beneficio total de un individuo. |
+| `calcular_aptitud()` | Calcula la aptitud aplicando la penalización correspondiente. |
+| `es_valida()` | Comprueba si el individuo respeta el presupuesto. |
+| `proyectos_seleccionados()` | Identifica los proyectos representados por los genes en 1. |
+| `seleccionar_padre()` | Realiza la selección mediante torneo. |
+| `cruzar()` | Realiza el cruce de un punto. |
+| `mutar()` | Realiza la mutación binaria. |
+| `mostrar_individuo()` | Muestra la información de un individuo. |
+| `demostracion_punto3()` | Ejecuta la demostración completa del Punto 3. |
 
 ---
 
 # Parámetros utilizados
 
-| Parámetro                |    Valor |
-| ------------------------ | -------: |
-| Número de proyectos      |       10 |
-| Tamaño de población      |       20 |
-| Presupuesto máximo       |       50 |
-| Lambda                   |        5 |
-| Tamaño del torneo        |        3 |
-| Probabilidad de mutación |     0.05 |
-| Tipo de cruce            | Un punto |
-| Tipo de mutación         |  Binaria |
-
----
-
-# Demostración del Punto 3
-
-El programa realiza una demostración completa de los operadores genéticos.
-
-## Selección
-
-Se muestran los tres individuos que participan en cada torneo junto con su respectiva aptitud.
-
-Posteriormente se identifica el individuo ganador, que será utilizado como padre.
-
-Se realiza el proceso para obtener dos padres.
-
-## Cruce
-
-Después de obtener los dos padres, el programa muestra:
-
-* Padre 1.
-* Padre 2.
-* Punto de cruce.
-* Hijo 1 antes de la mutación.
-* Hijo 2 antes de la mutación.
-
-## Mutación
-
-Posteriormente se aplica la probabilidad de mutación `0.05` a cada gen.
-
-El programa muestra:
-
-* Cromosoma antes de mutar.
-* Posiciones que fueron mutadas.
-* Cromosoma después de mutar.
-
-Finalmente se presenta la información de los hijos obtenidos.
-
----
-
-# Información de los hijos finales
-
-Para cada hijo final se muestra:
-
-* Cromosoma.
-* Proyectos seleccionados.
-* Costo.
-* Beneficio.
-* Aptitud.
-* Validez respecto al presupuesto.
-
-Esto permite comprobar el efecto de los operadores sobre las soluciones.
+| Parámetro | Valor |
+|-----------|------:|
+| Número de proyectos | 10 |
+| Tamaño de población | 20 |
+| Presupuesto máximo | 50 |
+| Lambda de penalización | 5 |
+| Tamaño del torneo | 3 |
+| Probabilidad de mutación | 0.05 |
+| Tipo de cruce | Un punto |
+| Tipo de mutación | Binaria |
 
 ---
 
@@ -341,20 +585,20 @@ El Punto 3 utiliza como base los elementos desarrollados anteriormente en el Pun
 
 Se mantienen:
 
-* Los 10 proyectos.
-* Los costos.
-* Los beneficios.
-* El presupuesto máximo de 50.
-* La representación binaria.
-* El cálculo del costo.
-* El cálculo del beneficio.
-* La función de aptitud.
-* La penalización con `lambda = 5`.
+- Los 10 proyectos.
+- Los costos.
+- Los beneficios.
+- El presupuesto máximo de 50.
+- La representación binaria.
+- El cálculo del costo.
+- El cálculo del beneficio.
+- La función de aptitud.
+- La penalización con `lambda = 5`.
 
 A partir de estos elementos se incorporan los operadores genéticos:
 
 ```text
-Punto 2
+PUNTO 2
    │
    ├── Individuos
    ├── Población
@@ -363,18 +607,55 @@ Punto 2
    └── Aptitud
           │
           ▼
-Punto 3
+PUNTO 3
    │
-   ├── Selección
-   ├── Cruce
-   └── Mutación
+   ├── Selección por torneo
+   ├── Cruce de un punto
+   └── Mutación binaria
 ```
+
+---
+
+# Ejecución del programa
+
+Para ejecutar el programa se debe ingresar a la carpeta `Punto3`.
+
+En Windows PowerShell:
+
+```powershell
+cd Punto3
+```
+
+Luego ejecutar:
+
+```powershell
+python punto3_operadores_geneticos.py
+```
+
+También puede utilizarse:
+
+```powershell
+py punto3_operadores_geneticos.py
+```
+
+El programa mostrará en la consola:
+
+1. La población inicial.
+2. Los participantes del primer torneo.
+3. El Padre 1 seleccionado.
+4. Los participantes del segundo torneo.
+5. El Padre 2 seleccionado.
+6. El punto de cruce.
+7. Los hijos antes de la mutación.
+8. Las mutaciones realizadas.
+9. Los hijos después de la mutación.
+10. El costo, beneficio, aptitud y validez de los hijos finales.
 
 ---
 
 # Estructura del proyecto
 
-La carpeta correspondiente a este punto está organizada de la siguiente manera:
+La estructura correspondiente al Punto 3 es:
 
 ```text
 Punto3/
@@ -386,11 +667,23 @@ Punto3/
 
 ### `punto3_operadores_geneticos.py`
 
-Contiene la implementación de los operadores genéticos y la demostración del proceso.
+Contiene la implementación en Python de los operadores genéticos y la demostración solicitada.
 
 ### `README.md`
 
-Contiene la explicación del problema, los operadores utilizados, los parámetros y la forma de ejecución.
+Contiene la documentación del Punto 3, incluyendo:
+
+- Descripción del problema.
+- Representación del cromosoma.
+- Función de aptitud.
+- Selección por torneo.
+- Cruce de un punto.
+- Mutación binaria.
+- Ejemplo manual.
+- Tablas de resultados.
+- Funciones implementadas.
+- Parámetros utilizados.
+- Instrucciones de ejecución.
 
 ---
 
@@ -398,31 +691,11 @@ Contiene la explicación del problema, los operadores utilizados, los parámetro
 
 Para ejecutar el programa se necesita:
 
-* Python 3.x
-* Visual Studio Code u otro editor de código.
-* Terminal para ejecutar el archivo.
+- Python 3.x.
+- Visual Studio Code u otro editor de código.
+- Terminal para ejecutar el archivo.
 
-No se utilizan bibliotecas externas para implementar los operadores genéticos.
-
-El programa utiliza la biblioteca estándar `random` de Python.
-
----
-
-# Ejecución
-
-Desde la terminal, ubicándose dentro de la carpeta `Punto3`, ejecutar:
-
-```bash
-python punto3_operadores_geneticos.py
-```
-
-En algunos sistemas también puede utilizarse:
-
-```bash
-py punto3_operadores_geneticos.py
-```
-
-También es posible ejecutar el programa directamente desde Visual Studio Code utilizando la opción **Run Python File**.
+El programa utiliza la biblioteca estándar `random` de Python y no requiere instalar bibliotecas externas para los operadores genéticos.
 
 ---
 
@@ -442,21 +715,25 @@ Al ejecutar el programa se muestran los resultados correspondientes a:
 10. Aptitud de los hijos.
 11. Validez de los hijos.
 
-Los resultados numéricos de la ejecución se obtienen directamente al ejecutar el programa.
+Los resultados numéricos de la demostración documentada en este README corresponden a una ejecución del programa con la semilla aleatoria utilizada en el código.
 
 ---
 
 # Conclusión
 
-En este punto se implementaron los tres operadores genéticos solicitados: **selección por torneo, cruce de un punto y mutación binaria**.
+En este punto se implementaron y demostraron los tres operadores genéticos solicitados: **selección por torneo de tamaño 3, cruce de un punto y mutación binaria**.
 
-La selección por torneo permite escoger padres utilizando la aptitud de los individuos. El cruce de un punto combina la información genética de dos padres para producir nuevos individuos. Finalmente, la mutación binaria permite introducir cambios aleatorios en los genes y mantener diversidad dentro de las soluciones.
+La selección por torneo permite escoger los padres utilizando la aptitud de los individuos. Posteriormente, el cruce de un punto combina la información genética de los dos padres para generar nuevos individuos.
 
-Estos operadores permiten transformar la población inicial y generar nuevos individuos, constituyendo los mecanismos fundamentales de reproducción de un algoritmo genético.
+Finalmente, la mutación binaria revisa cada gen utilizando una probabilidad del 5 %, permitiendo introducir cambios aleatorios en los cromosomas.
+
+En la ejecución presentada no se produjo ninguna mutación, por lo que los cromosomas finales fueron iguales a los obtenidos después del cruce.
+
+El resultado permite observar de manera práctica cómo los operadores genéticos transforman los individuos de una población y generan nuevas posibles soluciones para el problema de selección de proyectos.
 
 ---
 
-## Autor
+# Autor
 
 **Taller de Introducción a la Inteligencia Artificial**
 
