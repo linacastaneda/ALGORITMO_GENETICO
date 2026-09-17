@@ -67,3 +67,41 @@ $$
 $$
 
 Por lo tanto, existen 1024 soluciones posibles dentro del espacio de búsqueda.
+
+## Cálculo manual del individuo propuesto
+
+El individuo dado es:
+
+$$
+X=(1,0,1,1,0,0,1,0,1,0)
+$$
+
+Los proyectos seleccionados corresponden a P1, P3, P4, P7 y P9.
+
+### Costo total
+
+$$
+C(X)=12+11+8+6+5=42
+$$
+
+### Beneficio total
+
+$$
+B(X)=24+23+15+11+9=82
+$$
+
+### Validación
+
+Como:
+
+$$
+42 \leq 50
+$$
+
+el individuo cumple con la restricción presupuestal y representa una solución válida.
+
+Por lo tanto:
+
+- Costo total: 42
+- Beneficio total: 82
+- Solución válida: Sí
