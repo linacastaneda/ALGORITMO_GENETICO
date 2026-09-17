@@ -16,7 +16,7 @@ Este programa:
   5. Analiza el efecto de variar la penalizacion lambda sobre una solucion invalida.
 
 Ejecucion:
-    python punto2_poblacion_aptitud.py
+    python punto2.py
 """
 
 import random
@@ -107,7 +107,7 @@ def construir_reporte(poblacion, lam=5):
         beneficio = calcular_beneficio(crom)
         aptitud = calcular_aptitud(crom, lam)
         valida = costo <= PRESUPUESTO
-        prods = ", ".join(proyectos_seleccionados(crom)) if valida or True else ""
+        prods = ", ".join(proyectos_seleccionados(crom))
         if not prods:
             prods = "-"
         if valida:
