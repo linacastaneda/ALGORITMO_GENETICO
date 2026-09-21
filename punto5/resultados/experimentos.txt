@@ -1,4 +1,4 @@
-Experimento A
+Experimento A - Corrida 1
 Poblacion: 10
 Generaciones: 50
 Mutacion: 0.01
@@ -6,27 +6,189 @@ Beneficio: 93
 Costo: 49
 Proyectos: ['P1', 'P5', 'P8', 'P9', 'P10']
 Generacion mejor: 44
-Tiempo: 0.004859 segundos
+Tiempo: 0.004994 segundos
 Aptitud promedio final: 89.40
+Diversidad final: 3
+Diversidad promedio: 2.40
 
-Experimento B
+Experimento A - Corrida 2
+Poblacion: 10
+Generaciones: 50
+Mutacion: 0.01
+Beneficio: 96
+Costo: 50
+Proyectos: ['P2', 'P3', 'P4', 'P7', 'P9', 'P10']
+Generacion mejor: 2
+Tiempo: 0.004954 segundos
+Aptitud promedio final: 94.70
+Diversidad final: 2
+Diversidad promedio: 2.16
+
+Experimento A - Corrida 3
+Poblacion: 10
+Generaciones: 50
+Mutacion: 0.01
+Beneficio: 100
+Costo: 50
+Proyectos: ['P1', 'P3', 'P6', 'P10']
+Generacion mejor: 3
+Tiempo: 0.005737 segundos
+Aptitud promedio final: 100.00
+Diversidad final: 1
+Diversidad promedio: 2.56
+
+Experimento A - Corrida 4
+Poblacion: 10
+Generaciones: 50
+Mutacion: 0.01
+Beneficio: 96
+Costo: 50
+Proyectos: ['P2', 'P3', 'P4', 'P7', 'P9', 'P10']
+Generacion mejor: 1
+Tiempo: 0.004980 segundos
+Aptitud promedio final: 96.00
+Diversidad final: 1
+Diversidad promedio: 2.24
+
+Experimento A - Corrida 5
+Poblacion: 10
+Generaciones: 50
+Mutacion: 0.01
+Beneficio: 97
+Costo: 50
+Proyectos: ['P1', 'P3', 'P5', 'P9', 'P10']
+Generacion mejor: 10
+Tiempo: 0.005537 segundos
+Aptitud promedio final: 93.70
+Diversidad final: 2
+Diversidad promedio: 2.14
+
+Experimento B - Corrida 1
 Poblacion: 20
 Generaciones: 100
 Mutacion: 0.05
 Beneficio: 100
 Costo: 50
 Proyectos: ['P1', 'P3', 'P6', 'P10']
-Generacion mejor: 3
-Tiempo: 0.022225 segundos
-Aptitud promedio final: 90.65
+Generacion mejor: 2
+Tiempo: 0.019591 segundos
+Aptitud promedio final: 88.65
+Diversidad final: 8
+Diversidad promedio: 8.45
 
-Experimento C
+Experimento B - Corrida 2
+Poblacion: 20
+Generaciones: 100
+Mutacion: 0.05
+Beneficio: 99
+Costo: 50
+Proyectos: ['P1', 'P2', 'P3', 'P6', 'P7']
+Generacion mejor: 2
+Tiempo: 0.019576 segundos
+Aptitud promedio final: 90.00
+Diversidad final: 11
+Diversidad promedio: 8.42
+
+Experimento B - Corrida 3
+Poblacion: 20
+Generaciones: 100
+Mutacion: 0.05
+Beneficio: 96
+Costo: 50
+Proyectos: ['P2', 'P3', 'P5', 'P8', 'P10']
+Generacion mejor: 2
+Tiempo: 0.020149 segundos
+Aptitud promedio final: 88.85
+Diversidad final: 6
+Diversidad promedio: 8.55
+
+Experimento B - Corrida 4
+Poblacion: 20
+Generaciones: 100
+Mutacion: 0.05
+Beneficio: 100
+Costo: 50
+Proyectos: ['P1', 'P3', 'P6', 'P10']
+Generacion mejor: 4
+Tiempo: 0.020075 segundos
+Aptitud promedio final: 92.05
+Diversidad final: 9
+Diversidad promedio: 9.08
+
+Experimento B - Corrida 5
+Poblacion: 20
+Generaciones: 100
+Mutacion: 0.05
+Beneficio: 98
+Costo: 50
+Proyectos: ['P1', 'P3', 'P4', 'P7', 'P10']
+Generacion mejor: 6
+Tiempo: 0.021955 segundos
+Aptitud promedio final: 92.20
+Diversidad final: 6
+Diversidad promedio: 8.56
+
+Experimento C - Corrida 1
 Poblacion: 50
 Generaciones: 200
 Mutacion: 0.1
 Beneficio: 100
 Costo: 50
 Proyectos: ['P1', 'P3', 'P6', 'P10']
-Generacion mejor: 2
-Tiempo: 0.098872 segundos
-Aptitud promedio final: 76.40
+Generacion mejor: 6
+Tiempo: 0.114020 segundos
+Aptitud promedio final: 77.56
+Diversidad final: 38
+Diversidad promedio: 41.17
+
+Experimento C - Corrida 2
+Poblacion: 50
+Generaciones: 200
+Mutacion: 0.1
+Beneficio: 100
+Costo: 50
+Proyectos: ['P1', 'P3', 'P6', 'P10']
+Generacion mejor: 23
+Tiempo: 0.091622 segundos
+Aptitud promedio final: 73.84
+Diversidad final: 46
+Diversidad promedio: 42.93
+
+Experimento C - Corrida 3
+Poblacion: 50
+Generaciones: 200
+Mutacion: 0.1
+Beneficio: 100
+Costo: 50
+Proyectos: ['P1', 'P3', 'P6', 'P10']
+Generacion mejor: 60
+Tiempo: 0.089091 segundos
+Aptitud promedio final: 79.84
+Diversidad final: 38
+Diversidad promedio: 40.62
+
+Experimento C - Corrida 4
+Poblacion: 50
+Generaciones: 200
+Mutacion: 0.1
+Beneficio: 100
+Costo: 50
+Proyectos: ['P1', 'P3', 'P6', 'P10']
+Generacion mejor: 44
+Tiempo: 0.091722 segundos
+Aptitud promedio final: 77.38
+Diversidad final: 40
+Diversidad promedio: 40.66
+
+Experimento C - Corrida 5
+Poblacion: 50
+Generaciones: 200
+Mutacion: 0.1
+Beneficio: 100
+Costo: 50
+Proyectos: ['P1', 'P3', 'P6', 'P10']
+Generacion mejor: 49
+Tiempo: 0.088610 segundos
+Aptitud promedio final: 77.64
+Diversidad final: 44
+Diversidad promedio: 41.74

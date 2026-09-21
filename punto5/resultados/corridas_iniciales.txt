@@ -3,7 +3,7 @@ Beneficio: 97
 Costo: 50
 Proyectos: ['P1', 'P3', 'P4', 'P5', 'P8']
 Generacion mejor: 2
-Tiempo: 0.018344 segundos
+Tiempo: 0.021981 segundos
 Aptitud promedio final: 90.85
 
 Corrida 2
@@ -11,7 +11,7 @@ Beneficio: 99
 Costo: 50
 Proyectos: ['P1', 'P3', 'P4', 'P6', 'P9']
 Generacion mejor: 7
-Tiempo: 0.021591 segundos
+Tiempo: 0.026680 segundos
 Aptitud promedio final: 89.70
 
 Corrida 3
@@ -19,7 +19,7 @@ Beneficio: 99
 Costo: 50
 Proyectos: ['P1', 'P2', 'P3', 'P6', 'P7']
 Generacion mejor: 11
-Tiempo: 0.022079 segundos
+Tiempo: 0.017156 segundos
 Aptitud promedio final: 89.70
 
 Corrida 4
@@ -27,7 +27,7 @@ Beneficio: 97
 Costo: 50
 Proyectos: ['P1', 'P4', 'P6', 'P7', 'P8']
 Generacion mejor: 1
-Tiempo: 0.019903 segundos
+Tiempo: 0.022846 segundos
 Aptitud promedio final: 87.05
 
 Corrida 5
@@ -35,5 +35,5 @@ Beneficio: 99
 Costo: 50
 Proyectos: ['P1', 'P2', 'P3', 'P6', 'P7']
 Generacion mejor: 12
-Tiempo: 0.027051 segundos
+Tiempo: 0.021518 segundos
 Aptitud promedio final: 88.80
