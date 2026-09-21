@@ -48,7 +48,7 @@ Padres:
   PADRE 1: 0110001111
   PADRE 2: 0111001011
 
-Hijos antes de la mutaci├│n:
+Hijos antes de la mutacion:
   HIJO 1: 0110001011
   HIJO 2: 0111001111
 
