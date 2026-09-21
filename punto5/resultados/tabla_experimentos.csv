@@ -1,4 +1,0 @@
-Experimento,Poblacion,Generaciones,Mutacion,Beneficio,Costo,Proyectos,Generacion mejor,Tiempo (s),Aptitud promedio final
-A,10,50,0.01,93,49,"P1, P5, P8, P9, P10",44,0.004859,89.40
-B,20,100,0.05,100,50,"P1, P3, P6, P10",3,0.022225,90.65
-C,50,200,0.1,100,50,"P1, P3, P6, P10",2,0.098872,76.40
