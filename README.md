@@ -1,6 +1,6 @@
-# 🧬 Algoritmo Genético — Selección Óptima de Proyectos
+#  Algoritmo Genético — Selección Óptima de Proyectos
 
-## 📌 Descripción del proyecto
+##  Descripción del proyecto
 
 Este repositorio contiene el desarrollo de un taller académico sobre **algoritmos genéticos**, aplicado a un problema de selección óptima de proyectos de innovación.
 
@@ -18,7 +18,7 @@ De esta manera, el repositorio muestra el proceso completo desde la definición 
 
 ---
 
-# 🎯 Objetivo
+#  Objetivo
 
 El objetivo principal es comprender e implementar un **algoritmo genético** capaz de encontrar buenas soluciones para un problema de optimización con restricciones.
 
@@ -38,7 +38,7 @@ Durante el desarrollo se busca:
 
 ---
 
-# 🧠 ¿Qué es un algoritmo genético?
+#  ¿Qué es un algoritmo genético?
 
 Un algoritmo genético es una técnica de optimización inspirada en algunos principios de la evolución biológica.
 
@@ -59,7 +59,7 @@ El proceso se repite durante varias generaciones buscando soluciones con una mej
 
 ---
 
-# 🔄 Flujo general del algoritmo
+#  Flujo general del algoritmo
 
 El funcionamiento general implementado en el proyecto puede representarse mediante el siguiente diagrama:
 
@@ -82,7 +82,7 @@ Este flujo representa la evolución de la población desde la generación inicia
 
 ---
 
-# 📋 Formulación del problema
+#  Formulación del problema
 
 El problema trabaja con **10 proyectos de innovación**.
 
@@ -106,7 +106,7 @@ La información utilizada es:
 |    P9    |     5 |         9 |
 |    P10   |    13 |        25 |
 
-### 💰 Presupuesto máximo
+###  Presupuesto máximo
 
 El presupuesto disponible es:
 
@@ -122,7 +122,7 @@ Costo total ≤ 50
 
 ---
 
-# 🧬 Representación del cromosoma
+#  Representación del cromosoma
 
 Cada proyecto se representa mediante un gen binario.
 
@@ -168,7 +168,7 @@ Como el costo es exactamente igual al presupuesto, la solución es válida.
 
 ---
 
-# 🔢 Espacio de búsqueda
+#  Espacio de búsqueda
 
 Cada uno de los 10 genes puede tomar dos valores:
 
@@ -188,9 +188,9 @@ El algoritmo genético busca explorar este espacio de soluciones sin tener que e
 
 ---
 
-# 🧩 Desarrollo del proyecto
+#  Desarrollo del proyecto
 
-## 1️⃣ Punto 1 — Formulación del problema
+##  Punto 1 — Formulación del problema
 
 El primer punto establece la formulación matemática del problema.
 
@@ -255,7 +255,7 @@ Como `42 ≤ 50`, la solución es válida.
 
 ---
 
-## 2️⃣ Punto 2 — Población inicial y función de aptitud
+## Punto 2 — Población inicial y función de aptitud
 
 En el segundo punto se pasa de la formulación matemática a la generación de soluciones.
 
@@ -348,13 +348,13 @@ El valor utilizado finalmente es:
 
 ---
 
-## 3️⃣ Punto 3 — Operadores genéticos
+##  Punto 3 — Operadores genéticos
 
 En el tercer punto se implementan los operadores necesarios para producir nuevas soluciones.
 
 Se utilizan tres operadores principales:
 
-### 🔹 Selección por torneo
+###  Selección por torneo
 
 Se utiliza un torneo de tamaño:
 
@@ -368,7 +368,7 @@ El ganador se utiliza como padre.
 
 ---
 
-### 🔹 Cruce de un punto
+###  Cruce de un punto
 
 El cruce combina dos cromosomas.
 
@@ -390,7 +390,7 @@ El punto de corte se selecciona aleatoriamente.
 
 ---
 
-### 🔹 Mutación binaria
+###  Mutación binaria
 
 La probabilidad de mutación utilizada es:
 
@@ -411,7 +411,7 @@ La mutación permite introducir diversidad y explorar nuevas soluciones.
 
 ---
 
-# ⚙️ Punto 4 — Algoritmo genético completo
+#  Punto 4 — Algoritmo genético completo
 
 En el cuarto punto se integran los elementos desarrollados anteriormente para construir el algoritmo genético completo.
 
@@ -459,7 +459,7 @@ con el cromosoma:
 
 ---
 
-# 📊 Punto 5 — Experimentos
+#  Punto 5 — Experimentos
 
 El quinto punto analiza el comportamiento del algoritmo utilizando diferentes configuraciones.
 
@@ -486,7 +486,7 @@ Se registraron variables como:
 
 ---
 
-# 📈 Resultados de los experimentos
+#  Resultados de los experimentos
 
 | Experimento | Beneficio promedio | Mejor beneficio | Costo mejor solución | Generación promedio de mejor solución | Tiempo promedio |
 | :---------: | -----------------: | --------------: | -------------------: | ------------------------------------: | --------------: |
@@ -521,7 +521,7 @@ Por lo tanto, esta solución cumple exactamente el presupuesto y alcanza un bene
 
 ---
 
-# 📊 Gráficas de los experimentos
+#  Gráficas de los experimentos
 
 El repositorio incluye las gráficas generadas durante el Punto 5.
 
@@ -569,7 +569,7 @@ Estas gráficas permiten observar visualmente el comportamiento del algoritmo du
 
 ---
 
-# 🔍 Análisis de los experimentos
+#  Análisis de los experimentos
 
 Los resultados muestran que las tres configuraciones consiguieron encontrar una solución con beneficio máximo registrado de **100** y costo **50**.
 
@@ -667,7 +667,7 @@ Esto permite observar cómo modificar el tamaño de población, número de gener
 
 ---
 
-# 🧪 Comparación visual
+#  Comparación visual
 
 El siguiente gráfico resume el beneficio promedio obtenido en cada configuración:
 
@@ -691,7 +691,7 @@ xychart-beta
 
 ---
 
-# 📂 Estructura del repositorio
+#  Estructura del repositorio
 
 ```text
 ALGORITMO_GENETICO/
@@ -732,7 +732,7 @@ ALGORITMO_GENETICO/
 
 ---
 
-# 🛠️ Tecnologías utilizadas
+#  Tecnologías utilizadas
 
 El proyecto fue desarrollado principalmente utilizando:
 
@@ -748,7 +748,7 @@ El código utiliza principalmente funcionalidades de la biblioteca estándar de 
 
 ---
 
-# ⚙️ Instalación
+#  Instalación
 
 Clonar el repositorio:
 
@@ -770,7 +770,7 @@ python --version
 
 ---
 
-# ▶️ Ejecución
+#  Ejecución
 
 Cada punto cuenta con su propio archivo de ejecución.
 
@@ -802,7 +802,7 @@ Los programas generan o actualizan los archivos de resultados correspondientes.
 
 ---
 
-# 📊 Archivos de resultados
+#  Archivos de resultados
 
 Los resultados del proyecto se almacenan en diferentes formatos.
 
@@ -844,7 +844,7 @@ experimento_C.png
 
 ---
 
-# 📚 Conceptos principales
+#  Conceptos principales
 
 | Concepto     | Descripción                                             |
 | ------------ | ------------------------------------------------------- |
@@ -864,7 +864,7 @@ experimento_C.png
 
 ---
 
-# 📝 Conclusiones
+#  Conclusiones
 
 El desarrollo del proyecto permitió implementar progresivamente un algoritmo genético para resolver un problema de selección de proyectos con una restricción presupuestal.
 
@@ -882,7 +882,7 @@ El proyecto permite observar cómo los algoritmos genéticos pueden utilizarse p
 
 ---
 
-# 👥 Autores
+#  Autores
 
 Proyecto desarrollado como actividad académica sobre **algoritmos genéticos y técnicas de optimización**.
 
@@ -891,7 +891,7 @@ https://github.com/linacastaneda/ALGORITMO_GENETICO
 
 ---
 
-# 📖 Documentación adicional
+#  Documentación adicional
 
 Para consultar el desarrollo detallado de cada parte del proyecto, se pueden revisar los siguientes archivos:
 
